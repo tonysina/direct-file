@@ -24,7 +24,9 @@ To quickly set up the application and run the supporting services (localstack, d
 docker compose up state-api -d
 ```
 
-The `state-api` application will be accessible at http://localhost:8081, and the PostgreSQL database will be available on port 5433 with the default username and password `postgres`.
+The `state-api` application will be accessible at http://localhost:8081.
+Database credentials are provided via environment variables `POSTGRES_USER` and
+`POSTGRES_PASSWORD` from your `.env` file.
 
 Health check: http://localhost:8081/actuator/health
 Swagger API:  http://localhost:8081/swagger-ui/index.html

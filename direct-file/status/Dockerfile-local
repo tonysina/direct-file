@@ -44,7 +44,7 @@ COPY src/ src/
 RUN ./mvnw package
 
 FROM eclipse-temurin:21-jre-alpine
-ENV LOCAL_WRAPPING_KEY "${LOCAL_WRAPPING_KEY:-oE3Pm+fr1I+YbX2ZxEe/n9INqJjy00KSl7oXXW4p5Xw=}"
+ENV LOCAL_WRAPPING_KEY "${LOCAL_WRAPPING_KEY}"
 COPY --from=mef-status-builder /build/target/mef-status-0.0.1-SNAPSHOT.jar /app.jar
 COPY --from=mef-sdk-repo MeF_Client_SDK/Java/source/ /mef-client-sdk-src/
 # Run from dir that allows mef-sdk to write it's files to the working directory (next iteration: configure mef-sdk)

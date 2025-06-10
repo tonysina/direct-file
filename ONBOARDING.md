@@ -28,7 +28,11 @@ To run everything:
 docker compose up -d --build
 ```
 
-The backend application is available at http://localhost:8080 and the postgres database is exposed on port 5432 with username and password `postgres`.
+First copy `.env.example` to `.env` and set values for `POSTGRES_USER`,
+`POSTGRES_PASSWORD`, `FLASK_SECRET_KEY`, and `LOCAL_WRAPPING_KEY`. After starting
+Docker, the backend application will be available at
+http://localhost:8080 and the postgres database will be exposed on port 5432
+using the credentials you configured.
 
 When you're finished, tear it down with `docker compose down`.
  

@@ -19,6 +19,8 @@ audit_log.txt
 
 node_modules/
 bin
+.env
+.env.*
 
 # sbt specific
 dist/*
