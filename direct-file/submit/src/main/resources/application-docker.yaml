@@ -28,4 +28,4 @@ submit:
 # these defaults are to match the backend (update/remove once we're fully onto sqs)
 direct-file:
   local-encryption:
-    local-wrapping-key: ${LOCAL_WRAPPING_KEY:oE3Pm+fr1I+YbX2ZxEe/n9INqJjy00KSl7oXXW4p5Xw=}
+    local-wrapping-key: ${LOCAL_WRAPPING_KEY}

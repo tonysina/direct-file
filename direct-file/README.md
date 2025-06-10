@@ -21,6 +21,9 @@ From the docker desktop:
 
 ## Important configuration variables
 
+Copy `.env.example` to `.env` and set `POSTGRES_USER`, `POSTGRES_PASSWORD`,
+`FLASK_SECRET_KEY`, and `LOCAL_WRAPPING_KEY` before running `docker compose`.
+
 | Name                    | Required | Default        | Description                                                                                                                             |
 |-------------------------|----------|----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `DF_DB_USER_ID`         | No       | 999            | User id used to run the database (if you set this, it likely will be to the value of `id -u`.                                           |
@@ -123,6 +126,9 @@ brew install pre-commit
 pre-commit install
 pre-commit install --hook-type pre-push
 ```
+
+The hook executes `scripts/run-static-analysis.sh`, which enforces formatting
+with Spotless and runs SpotBugs and PMD for every Java module.
 
 If you want to disable the checks, you can use:
 

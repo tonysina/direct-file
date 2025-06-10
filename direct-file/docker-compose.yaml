@@ -8,8 +8,8 @@ services:
     entrypoint: "/bin/bash"
     command: -c "chown -R ${DF_DB_USER_ID:-999}:${DF_DB_GROUP_ID:-999} /var/lib/postgresql/data & exec /usr/local/bin/docker-entrypoint.sh postgres"
     environment: &dbuser
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=en_US.UTF-8 --lc-ctype=en_US.UTF-8"
     volumes:
       - "./docker/db/postgres/init:/docker-entrypoint-initdb.d:ro"
@@ -83,7 +83,7 @@ services:
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
       JAVA_TOOL_OPTIONS: "${JAVA_TOOL_OPTIONS:-}"
       OTEL_SERVICE_NAME: "direct-file-api"
-      LOCAL_WRAPPING_KEY: "${LOCAL_WRAPPING_KEY:-oE3Pm+fr1I+YbX2ZxEe/n9INqJjy00KSl7oXXW4p5Xw=}"
+      LOCAL_WRAPPING_KEY: ${LOCAL_WRAPPING_KEY}
       DF_SUBMIT_PORT: "${DF_SUBMIT_PORT:-8083}"
       GIT_COMMIT_HASH: "${GIT_COMMIT_HASH:-}"
       DF_TIN_VALIDATION_ENABLED: ${DF_TIN_VALIDATION_ENABLED:-true}
@@ -111,7 +111,7 @@ services:
       context: ./utils/csp-simulator
     environment:
       FLASK_RUN_HOST: "0.0.0.0"
-      FLASK_SECRET_KEY: "not-so-secret-secret-key"
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY}
       CSPSIM_BACKEND_BASE_URL: "http://host.docker.internal:${DF_API_PORT:-8080}"
       CSPSIM_BACKEND_BASE_PATH: "${DF_API_PUBLIC_PATH:-/df/file/api}"
       CSPSIM_CLIENT_BASE_URL: "http://host.docker.internal:${DF_FE_PORT:-3000}"
@@ -168,7 +168,7 @@ services:
       SMTP_USERNAME: "${SMTP_USERNAME:-}"
       SMTP_PASSWORD: "${SMTP_PASSWORD:-}"
       SPRING_PROFILES_ACTIVE: docker,blackhole
-      LOCAL_WRAPPING_KEY: "${LOCAL_WRAPPING_KEY:-oE3Pm+fr1I+YbX2ZxEe/n9INqJjy00KSl7oXXW4p5Xw=}"
+      LOCAL_WRAPPING_KEY: ${LOCAL_WRAPPING_KEY}
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
       JAVA_TOOL_OPTIONS: "${JAVA_TOOL_OPTIONS:-}"
       OTEL_SERVICE_NAME: "direct-file-email"
@@ -195,7 +195,7 @@ services:
         MAVEN_OPTS: "${MAVEN_OPTS:-}"
     read_only: true
     environment:
-      LOCAL_WRAPPING_KEY: "${LOCAL_WRAPPING_KEY:-oE3Pm+fr1I+YbX2ZxEe/n9INqJjy00KSl7oXXW4p5Xw=}"
+      LOCAL_WRAPPING_KEY: ${LOCAL_WRAPPING_KEY}
       SPRING_PROFILES_ACTIVE: development,docker
       STATEAPI_PORT: "${STATEAPI_PORT:-8081}"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
